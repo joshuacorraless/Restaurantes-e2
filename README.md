@@ -17,9 +17,22 @@
 ![Docker](https://img.shields.io/badge/Docker-blue?style=for-the-badge&logo=docker&logoColor=white)
 
 ![Coverage](https://img.shields.io/badge/coverage-≥90%25-brightgreen?style=flat-square)
-![Tests](https://img.shields.io/badge/tests-201%20unit%20%2B%20integración-success?style=flat-square)
 
 </div>
+
+---
+
+## In English
+
+**Restaurantes E2** is a distributed REST API for managing restaurants, menus, tables, reservations and orders, built for the Database Systems II course at Instituto Tecnológico de Costa Rica. The same API runs on **PostgreSQL** (stored procedures) or a **sharded MongoDB cluster**, selected with one environment variable. It adds Redis caching, a separate Elasticsearch search service, Keycloak authentication and a full Kubernetes deployment, with GitHub Actions enforcing a 90% minimum line coverage.
+
+### My contribution
+
+- Built the data access layer that lets the API switch between PostgreSQL and MongoDB without changing business code.
+- Set up the sharded MongoDB cluster and fixed shard-key filtering so menu item updates hit a single shard.
+- Made reservation conflict checks behave the same on both engines and return `409 Conflict` when a table is taken.
+- Implemented Redis caching and the API rate limiter.
+- Wrote the Kubernetes manifests for Keycloak, Redis and the search service, and restructured the repo into `apps/` and `infra/`.
 
 ---
 
@@ -139,7 +152,7 @@ npm run test:coverage    # con reporte de cobertura
 ```
 
 > **Cobertura mínima exigida:** `90 %` de líneas.
-> Reporte HTML en [`apps/api/coverage/lcov-report/index.html`](./apps/api/coverage/lcov-report/index.html).
+> `npm run test:coverage` genera el reporte HTML localmente en `apps/api/coverage/lcov-report/index.html` (no se versiona en el repositorio).
 
 ---
 
